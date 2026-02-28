@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Black+Han+Sans&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,45 +6,43 @@
 
 @layer base {
   :root {
-    --background: 30 50% 97%;
-    --foreground: 280 30% 20%;
+    --background: 45 30% 96%;
+    --foreground: 220 25% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 280 30% 20%;
+    --card-foreground: 220 25% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 280 30% 20%;
+    --popover-foreground: 220 25% 12%;
 
-    --primary: 280 60% 65%;
+    --primary: 220 70% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 90% 70%;
-    --secondary-foreground: 30 60% 20%;
+    --secondary: 45 80% 60%;
+    --secondary-foreground: 220 25% 12%;
 
-    --muted: 280 20% 93%;
-    --muted-foreground: 280 10% 45%;
+    --muted: 220 15% 90%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 340 80% 65%;
+    --accent: 350 75% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 280 25% 88%;
-    --input: 280 20% 90%;
-    --ring: 280 60% 65%;
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 220 70% 50%;
 
-    --radius: 1rem;
+    --radius: 0.75rem;
 
-    --game-green: 155 55% 52%;
-    --game-orange: 25 90% 62%;
-    --game-pink: 340 75% 65%;
-    --game-teal: 185 55% 50%;
-    --game-violet: 270 55% 62%;
-    --game-yellow: 45 95% 65%;
-    --game-sky: 200 80% 62%;
+    --game-green: 150 60% 45%;
+    --game-orange: 30 85% 55%;
+    --game-pink: 330 70% 60%;
+    --game-teal: 180 55% 45%;
+    --game-violet: 270 60% 55%;
 
-    --font-display: 'Jua', sans-serif;
+    --font-display: 'Black Han Sans', sans-serif;
     --font-body: 'Noto Sans KR', sans-serif;
 
     --sidebar-background: 0 0% 98%;
@@ -58,25 +56,25 @@
   }
 
   .dark {
-    --background: 280 20% 8%;
-    --foreground: 30 30% 95%;
-    --card: 280 20% 12%;
-    --card-foreground: 30 30% 95%;
-    --popover: 280 20% 12%;
-    --popover-foreground: 30 30% 95%;
-    --primary: 280 60% 65%;
+    --background: 220 25% 8%;
+    --foreground: 45 20% 95%;
+    --card: 220 25% 12%;
+    --card-foreground: 45 20% 95%;
+    --popover: 220 25% 12%;
+    --popover-foreground: 45 20% 95%;
+    --primary: 220 70% 60%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 40 70% 55%;
+    --secondary: 45 60% 50%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 280 15% 18%;
-    --muted-foreground: 280 10% 60%;
-    --accent: 340 75% 60%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 350 75% 55%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 280 15% 22%;
-    --input: 280 15% 22%;
-    --ring: 280 60% 65%;
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 220 70% 60%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -104,30 +102,3 @@
     font-family: var(--font-display);
   }
 }
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-}
-
-@keyframes wiggle {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(-3deg); }
-  75% { transform: rotate(3deg); }
-}
-
-@keyframes pop-in {
-  0% { transform: scale(0.8); opacity: 0; }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-@keyframes sparkle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(0.95); }
-}
-
-.animate-float { animation: float 3s ease-in-out infinite; }
-.animate-wiggle { animation: wiggle 1s ease-in-out infinite; }
-.animate-pop-in { animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-.animate-sparkle { animation: sparkle 2s ease-in-out infinite; }
