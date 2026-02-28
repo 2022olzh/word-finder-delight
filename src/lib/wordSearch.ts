@@ -4,10 +4,6 @@ const DIRECTIONS: [number, number][] = [
   [1, 0],   // down
   [1, 1],   // diagonal down-right
   [-1, 1],  // diagonal up-right
-  [0, -1],  // left
-  [-1, 0],  // up
-  [-1, -1], // diagonal up-left
-  [1, -1],  // diagonal down-left
 ];
 
 const KOREAN_CHARS = "가나다라마바사아자차카타파하거너더러머버서어저처커터퍼허고노도로모보소오조초코토포호구누두루무부수우주추쿠투푸후";

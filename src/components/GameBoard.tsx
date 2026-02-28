@@ -1,8 +1,9 @@
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { GameBoard as GameBoardType, getCellsBetween, checkWord } from "@/lib/wordSearch";
 import { Button } from "@/components/ui/button";
-import { RotateCcw, ArrowLeft, Trophy } from "lucide-react";
+import { RotateCcw, ArrowLeft, Trophy, Download } from "lucide-react";
 import confetti from "canvas-confetti";
+import html2canvas from "html2canvas";
 
 interface GameBoardProps {
   board: GameBoardType;
@@ -61,9 +62,8 @@ const GameBoardComponent = ({ board, words, onBack }: GameBoardProps) => {
     const cells = getCellsBetween(startCell[0], startCell[1], currentCell[0], currentCell[1]);
     if (cells && cells.length >= 2) {
       const selectedWord = checkWord(board.grid, cells);
-      const reversedWord = checkWord(board.grid, [...cells].reverse());
 
-      const matchedWord = words.find(w => w === selectedWord || w === reversedWord);
+      const matchedWord = words.find(w => w === selectedWord);
       if (matchedWord && !foundWords.has(matchedWord)) {
         const newFound = new Set(foundWords);
         newFound.add(matchedWord);
@@ -81,6 +81,17 @@ const GameBoardComponent = ({ board, words, onBack }: GameBoardProps) => {
     setCurrentCell(null);
   }, [startCell, currentCell, board.grid, words, foundWords, foundCells, colorIndex]);
 
+  const printRef = useRef<HTMLDivElement>(null);
+
+  const handleSaveImage = useCallback(async () => {
+    if (!printRef.current) return;
+    const canvas = await html2canvas(printRef.current, { backgroundColor: "#ffffff", scale: 2 });
+    const link = document.createElement("a");
+    link.download = "낱말찾기.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  }, []);
+
   const cellSize = board.size <= 6 ? "w-12 h-12 text-xl" : board.size <= 8 ? "w-10 h-10 text-lg" : "w-8 h-8 text-base";
 
   return (
@@ -92,57 +103,60 @@ const GameBoardComponent = ({ board, words, onBack }: GameBoardProps) => {
         </div>
       )}
 
-      <div
-        className="bg-card rounded-2xl shadow-lg p-4 border border-border select-none touch-none"
-        onPointerUp={handlePointerUp}
-        onPointerLeave={() => { if (selecting) handlePointerUp(); }}
-      >
+      <div ref={printRef} className="flex flex-col items-center gap-4 bg-card p-6 rounded-2xl shadow-lg border border-border">
+        <h2 className="font-display text-2xl text-foreground">낱말찾기</h2>
         <div
-          className="grid gap-0.5"
-          style={{ gridTemplateColumns: `repeat(${board.size}, 1fr)` }}
+          className="select-none touch-none"
+          onPointerUp={handlePointerUp}
+          onPointerLeave={() => { if (selecting) handlePointerUp(); }}
         >
-          {board.grid.map((row, r) =>
-            row.map((char, c) => {
-              const key = `${r},${c}`;
-              const isHighlighted = highlightedCells.has(key);
-              const foundColor = foundCells.has(key) ? FOUND_COLORS[foundCells.get(key)!] : "";
+          <div
+            className="grid gap-0.5"
+            style={{ gridTemplateColumns: `repeat(${board.size}, 1fr)` }}
+          >
+            {board.grid.map((row, r) =>
+              row.map((char, c) => {
+                const key = `${r},${c}`;
+                const isHighlighted = highlightedCells.has(key);
+                const foundColor = foundCells.has(key) ? FOUND_COLORS[foundCells.get(key)!] : "";
 
-              return (
-                <div
-                  key={key}
-                  className={`${cellSize} flex items-center justify-center rounded-lg font-bold cursor-pointer transition-all duration-100
-                    ${isHighlighted ? "bg-primary text-primary-foreground scale-110 z-10" : ""}
-                    ${!isHighlighted && foundColor ? foundColor : ""}
-                    ${!isHighlighted && !foundColor ? "hover:bg-muted" : ""}
-                  `}
-                  onPointerDown={() => handlePointerDown(r, c)}
-                  onPointerEnter={() => handlePointerEnter(r, c)}
-                >
-                  {char}
-                </div>
-              );
-            })
-          )}
+                return (
+                  <div
+                    key={key}
+                    className={`${cellSize} flex items-center justify-center rounded-lg font-bold cursor-pointer transition-all duration-100
+                      ${isHighlighted ? "bg-primary text-primary-foreground scale-110 z-10" : ""}
+                      ${!isHighlighted && foundColor ? foundColor : ""}
+                      ${!isHighlighted && !foundColor ? "hover:bg-muted" : ""}
+                    `}
+                    onPointerDown={() => handlePointerDown(r, c)}
+                    onPointerEnter={() => handlePointerEnter(r, c)}
+                  >
+                    {char}
+                  </div>
+                );
+              })
+            )}
+          </div>
         </div>
-      </div>
 
-      <div className="bg-card rounded-2xl shadow-lg p-5 border border-border w-full max-w-md">
-        <h3 className="text-sm font-medium text-muted-foreground mb-3">
-          찾은 낱말 {foundWords.size}/{words.length}
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {words.map((w) => (
-            <span
-              key={w}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
-                foundWords.has(w)
-                  ? "bg-primary text-primary-foreground line-through opacity-70"
-                  : "bg-muted text-muted-foreground"
-              }`}
-            >
-              {w}
-            </span>
-          ))}
+        <div className="w-full pt-2 border-t border-border">
+          <h3 className="text-sm font-medium text-muted-foreground mb-2">
+            찾아야 할 낱말
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {words.map((w) => (
+              <span
+                key={w}
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all ${
+                  foundWords.has(w)
+                    ? "bg-primary text-primary-foreground line-through opacity-70"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                {w}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -154,6 +168,10 @@ const GameBoardComponent = ({ board, words, onBack }: GameBoardProps) => {
         <Button variant="outline" onClick={() => window.location.reload()} className="gap-2">
           <RotateCcw className="h-4 w-4" />
           새 게임
+        </Button>
+        <Button variant="outline" onClick={handleSaveImage} className="gap-2">
+          <Download className="h-4 w-4" />
+          이미지 저장
         </Button>
       </div>
     </div>
