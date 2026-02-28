@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['Black Han Sans', 'sans-serif'],
+        body: ['Noto Sans KR', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -46,6 +50,13 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        game: {
+          green: "hsl(var(--game-green))",
+          orange: "hsl(var(--game-orange))",
+          pink: "hsl(var(--game-pink))",
+          teal: "hsl(var(--game-teal))",
+          violet: "hsl(var(--game-violet))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
