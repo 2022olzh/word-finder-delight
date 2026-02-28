@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Black Han Sans', 'sans-serif'],
+        display: ['Jua', 'sans-serif'],
         body: ['Noto Sans KR', 'sans-serif'],
       },
       colors: {
