@@ -7,7 +7,7 @@ interface WordInputProps {
   onStart: (words: string[]) => void;
 }
 
-const SAMPLE_WORDS = ["사과", "바나나", "포도", "수박", "딸기", "키위", "망고", "레몬", "체리", "복숭아"];
+const SAMPLE_WORDS = ["가정", "가족", "대인관계", "의사소통", "식사계획", "조리", "의복관리", "주거문화", "전환기", "진로탐색"];
 
 const WordInput = ({ onStart }: WordInputProps) => {
   const [words, setWords] = useState<string[]>([]);
@@ -37,7 +37,7 @@ const WordInput = ({ onStart }: WordInputProps) => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
+    <div className="flex-1 flex items-center justify-center p-4">
       <div className="w-full max-w-lg">
         <h1 className="font-display text-5xl text-center mb-2 text-foreground tracking-tight">
           낱말찾기

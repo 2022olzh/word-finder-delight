@@ -8,8 +8,8 @@
 
 @layer base {
   :root {
-    --background: 209 40% 96%;
-    --foreground: 222 47% 11%;
+    --background: 28 50% 98%;
+    --foreground: 20 20% 15%;
 
     --card: 210 40% 98%;
     --card-foreground: 222 47% 11%;
@@ -17,11 +17,11 @@
     --popover: 214 31% 91%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 216 19% 26%;
-    --primary-foreground: 210 19% 98%;
+    --primary: 21 80% 65%;
+    --primary-foreground: 20 10% 98%;
 
-    --secondary: 215 19% 34%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 30 40% 90%;
+    --secondary-foreground: 20 20% 15%;
 
     --muted: 215 20% 65%;
     --muted-foreground: 222 47% 11%;
@@ -32,9 +32,9 @@
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 85% 97%;
 
-    --border: 212 26% 83%;
-    --input: 212 26% 83%;
-    --ring: 216 19% 26%;
+    --border: 30 30% 85%;
+    --input: 30 30% 85%;
+    --ring: 21 80% 65%;
 
     --radius: 0rem;
 
@@ -74,17 +74,19 @@
     --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
     --tracking-normal: 0em;
     --spacing: 0.25rem;
+    --brand: 21 80% 65%;
+    --brand-foreground: 31 97% 72%;
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 20 20% 15%;
+    --foreground: 28 50% 98%;
     --card: 217 32% 17%;
     --card-foreground: 210 40% 98%;
     --popover: 215 24% 26%;
     --popover-foreground: 210 40% 98%;
-    --primary: 212 26% 83%;
-    --primary-foreground: 228 84% 4%;
+    --primary: 21 80% 65%;
+    --primary-foreground: 20 10% 98%;
     --secondary: 215 19% 34%;
     --secondary-foreground: 210 40% 98%;
     --muted: 215 16% 46%;
@@ -118,6 +120,8 @@
     --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
     --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
     --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    --brand: 31 97% 72%;
+    --brand-foreground: 21 80% 65%;
   }
 }
 
@@ -135,5 +139,30 @@
 @layer utilities {
   .font-display {
     font-family: var(--font-display);
+  }
+
+  .glow-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glow-effect::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle,
+        hsl(var(--brand) / 0.3),
+        transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .glow-effect:hover::before {
+    opacity: 1;
   }
 }
