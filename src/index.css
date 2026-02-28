@@ -16,13 +16,8 @@
 
 @layer base {
   :root {
-<<<<<<< HEAD
     --background: 28 50% 98%;
     --foreground: 20 20% 15%;
-=======
-    --background: 0 0% 96%;
-    --foreground: 0 0% 9%;
->>>>>>> a301ead9e2aa8020eb2f8ae486997ef7f3daf3cd
 
     --card: 0 0% 98%;
     --card-foreground: 0 0% 9%;
@@ -30,19 +25,11 @@
     --popover: 0 0% 89%;
     --popover-foreground: 0 0% 9%;
 
-<<<<<<< HEAD
     --primary: 21 80% 65%;
     --primary-foreground: 20 10% 98%;
 
     --secondary: 30 40% 90%;
     --secondary-foreground: 20 20% 15%;
-=======
-    --primary: 161 93% 30%;
-    --primary-foreground: 151 80% 95%;
-
-    --secondary: 0 0% 32%;
-    --secondary-foreground: 0 0% 98%;
->>>>>>> a301ead9e2aa8020eb2f8ae486997ef7f3daf3cd
 
     --muted: 0 0% 63%;
     --muted-foreground: 0 0% 9%;
@@ -53,15 +40,9 @@
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 85% 97%;
 
-<<<<<<< HEAD
     --border: 30 30% 85%;
     --input: 30 30% 85%;
     --ring: 21 80% 65%;
-=======
-    --border: 0 0% 83%;
-    --input: 0 0% 83%;
-    --ring: 161 93% 30%;
->>>>>>> a301ead9e2aa8020eb2f8ae486997ef7f3daf3cd
 
     --radius: 0.75rem;
 
@@ -106,7 +87,6 @@
   }
 
   .dark {
-<<<<<<< HEAD
     --background: 20 20% 15%;
     --foreground: 28 50% 98%;
     --card: 217 32% 17%;
@@ -121,22 +101,6 @@
     --muted-foreground: 210 40% 98%;
     --accent: 228 84% 4%;
     --accent-foreground: 215 20% 65%;
-=======
-    --background: 0 0% 9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 14%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 25%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 158 64% 51%;
-    --primary-foreground: 165 91% 9%;
-    --secondary: 0 0% 45%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 45%;
-    --muted-foreground: 0 0% 98%;
-    --accent: 178 84% 10%;
-    --accent-foreground: 172 66% 50%;
->>>>>>> a301ead9e2aa8020eb2f8ae486997ef7f3daf3cd
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 85% 97%;
     --border: 0 0% 32%;
@@ -164,12 +128,8 @@
     --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
     --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
     --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-<<<<<<< HEAD
     --brand: 31 97% 72%;
     --brand-foreground: 21 80% 65%;
-=======
-    --radius: 0rem;
->>>>>>> a301ead9e2aa8020eb2f8ae486997ef7f3daf3cd
   }
 }
 
