@@ -100,6 +100,19 @@ const GameBoardComponent = ({ board, words, onBack, onNext, isBonus }: GameBoard
     setCurrentCell(null);
   }, [startCell, currentCell, board.grid, words, foundWords, foundCells, colorIndex]);
 
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (!selecting) return;
+    const element = document.elementFromPoint(e.clientX, e.clientY);
+    const cell = element?.closest('[data-row]');
+    if (cell) {
+      const r = parseInt(cell.getAttribute('data-row') || "-1");
+      const c = parseInt(cell.getAttribute('data-col') || "-1");
+      if (r !== -1 && c !== -1) {
+        setCurrentCell([r, c]);
+      }
+    }
+  }, [selecting]);
+
   const printRef = useRef<HTMLDivElement>(null);
 
   const handleSaveImage = useCallback(async () => {
@@ -175,6 +188,7 @@ const GameBoardComponent = ({ board, words, onBack, onNext, isBonus }: GameBoard
           className="select-none touch-none w-full mx-auto"
           style={{ maxWidth: "min(100%, 50vh)" }}
           onPointerUp={handlePointerUp}
+          onPointerMove={handlePointerMove}
           onPointerLeave={() => { if (selecting) handlePointerUp(); }}
         >
           <div
@@ -190,6 +204,8 @@ const GameBoardComponent = ({ board, words, onBack, onNext, isBonus }: GameBoard
                 return (
                   <div
                     key={key}
+                    data-row={r}
+                    data-col={c}
                     className={`${cellSize} aspect-square w-full h-full flex items-center justify-center rounded-lg font-bold cursor-pointer transition-all duration-100
                       ${isHighlighted ? "bg-primary text-primary-foreground scale-110 z-10" : ""}
                       ${!isHighlighted && foundColor ? foundColor : ""}
